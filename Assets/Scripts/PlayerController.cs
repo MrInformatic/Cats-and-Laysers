@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(HFTInput), typeof(HFTGamepad))]
 public class PlayerController : MonoBehaviour
 {
+    public Renderer renderer;
+
     private int catLayerMask;
 
     [SerializeField]
@@ -12,18 +15,26 @@ public class PlayerController : MonoBehaviour
     float pickupRange = 1f;
     Transform cat;
 
-    float lastInput = 0;
+    //float lastInput = 0;
+
+    HFTInput m_hftInput;
+    HFTGamepad m_gamepad;
 
     private void Start()
     {
+        m_hftInput = GetComponent<HFTInput>();
         catLayerMask = LayerMask.GetMask("Cat");
+
+        m_gamepad = GetComponent<HFTGamepad>();
+
+        renderer.material.color = m_gamepad.color;
     }
 
     private void Update()
     {
-        float input = Input.GetAxisRaw("Jump");
+        //float input = m_hftInput.GetButton("Fire1");
         
-        if (lastInput == 0 && lastInput != input)
+        if (m_hftInput.GetButtonDown("Fire1"))
         {
             // Collect cat
             if (cat == null)
@@ -46,14 +57,14 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        lastInput = input;
+        //lastInput = input;
     }
 
     void FixedUpdate()
     {
         Vector3 movement = new Vector3(
-            Input.GetAxis("Horizontal"),
-            Input.GetAxis("Vertical")
+            m_hftInput.GetAxis("Horizontal"),
+            -m_hftInput.GetAxis("Vertical")
         );
 
         transform.position += movement * moveSpeed * Time.fixedDeltaTime;
