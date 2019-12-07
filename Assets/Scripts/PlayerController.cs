@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     private int pickupLayerMask;
     private int towerLayerMask;
-    public Renderer renderer;
+    //public Renderer renderer;
 
     [SerializeField]
     float pickupRange = 1f;
@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
 
         m_gamepad = GetComponent<HFTGamepad>();
 
-        renderer.material.color = m_gamepad.color;
+        //renderer.material.color = m_gamepad.color;
     }
 
     private void Update()
@@ -93,6 +93,7 @@ public class PlayerController : MonoBehaviour
                 Tower tower;
                 if (collider.TryGetComponent<Tower>(out tower))
                 {
+                    Debug.Log("TEst");
                     tower.Enter(transform, m_hftInput);
                 }
             }

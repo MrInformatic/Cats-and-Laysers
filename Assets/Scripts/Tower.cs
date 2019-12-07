@@ -28,6 +28,7 @@ public class Tower : MonoBehaviour
 
         // Lazer
         lazer.gameObject.SetActive(true);
+        Debug.Log(hFTInput);
         lazer.GetComponent<Lazer>().hFTInput = hFTInput;
     }
 
