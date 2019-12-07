@@ -91,9 +91,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3012385987427947304}
   - component: {fileID: 5534672731812722553}
-  - component: {fileID: 3012385987427947307}
   - component: {fileID: 3012385987427947301}
   - component: {fileID: 3012385987427947306}
+  - component: {fileID: 5443775870553641701}
+  - component: {fileID: 7628967780905740174}
+  - component: {fileID: 3012385987427947307}
   m_Layer: 8
   m_Name: Human
   m_TagString: Player
@@ -128,21 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1722f00dd32260c47b66c0e314c546bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
---- !u!114 &3012385987427947307
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3012385987427947305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 875fd21cf9d22d84d8f0016275eb646d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickupRange: 1
-  enterRange: 1
+  moveSpeed: 5
 --- !u!61 &3012385987427947301
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -190,3 +178,52 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &5443775870553641701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3012385987427947305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb7f9d9175fe6473ba0ba1534822e14b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerName: 
+  autoChooseColor: 1
+  color: {r: 0, g: 1, b: 0, a: 1}
+  controllerOptions:
+    controllerType: 3
+    provideOrientation: 0
+    provideAcceleration: 0
+    provideRotationRate: 0
+    askForName: 1
+    showMenu: 1
+--- !u!114 &7628967780905740174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3012385987427947305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82acc53909bd24e7b98f85698be7a9bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3012385987427947307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3012385987427947305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 875fd21cf9d22d84d8f0016275eb646d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderer: {fileID: 3012385986979882095}
+  pickupRange: 1
+  enterRange: 1

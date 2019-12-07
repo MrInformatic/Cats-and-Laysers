@@ -9,15 +9,12 @@ public class PlayerController : MonoBehaviour
     private int towerLayerMask;
     public Renderer renderer;
 
-    private int catLayerMask;
-
     [SerializeField]
     float pickupRange = 1f;
     [SerializeField]
     float enterRange = 1f;
     Transform hand;
 
-    //float lastInput = 0;
 
     HFTInput m_hftInput;
     HFTGamepad m_gamepad;
@@ -25,8 +22,15 @@ public class PlayerController : MonoBehaviour
     void Drop()
     {
         Debug.Log("Dropping");
+
         if (hand != null)
         {
+            CatAI catAI = hand.GetComponent<CatAI>();
+            if(catAI != null)
+            {
+                catAI.enabled = true;
+            }
+
             hand.parent = null;
             hand = null;
         }
@@ -37,14 +41,20 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Picking up");
         hand = entity;
         entity.parent = transform;
+
+        CatAI catAI = entity.GetComponent<CatAI>();
+        if(catAI != null)
+        {
+            catAI.enabled = false;
+        }
     }
 
     private void Start()
     {
         pickupLayerMask = LayerMask.GetMask("Cat", "Item");
         towerLayerMask = LayerMask.GetMask("Tower");
+
         m_hftInput = GetComponent<HFTInput>();
-        catLayerMask = LayerMask.GetMask("Cat");
 
         m_gamepad = GetComponent<HFTGamepad>();
 
@@ -53,9 +63,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        float takeInput = Input.GetAxisRaw("Jump");
-        float useInput = Input.GetAxisRaw("Fire1");
-        if (m_hftInput.GetButtonDown("Fire1"))
+        if (m_hftInput.GetButtonDown("Fire2"))
         {
             Debug.Log("Button Press");
             // Collect
@@ -73,7 +81,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (lastUseInput == 0 && lastUseInput != useInput)
+        if (m_hftInput.GetButtonDown("Fire1"))
         {
             // Use
             Collider2D collider = Physics2D.OverlapCircle(transform.position, pickupRange, towerLayerMask);
@@ -85,7 +93,7 @@ public class PlayerController : MonoBehaviour
                 Tower tower;
                 if (collider.TryGetComponent<Tower>(out tower))
                 {
-                    tower.Enter(transform);
+                    tower.Enter(transform, m_hftInput);
                 }
             }
             else if (hand)
@@ -93,8 +101,5 @@ public class PlayerController : MonoBehaviour
                 // Use item
             }
         }
-
-        lastTakeInput = takeInput;
-        lastUseInput = useInput;
     }
 }

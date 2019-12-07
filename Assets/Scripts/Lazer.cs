@@ -5,25 +5,24 @@ using UnityEngine;
 public class Lazer : MonoBehaviour
 {
     public Tower tower;
+    public HFTInput hFTInput;
 
     float lastTakeInput = 0f;
     float lastUseInput = 0f;
 
     void Update()
     {
-        float takeInput = Input.GetAxisRaw("Jump");
-        float useInput = Input.GetAxisRaw("Fire1");
+        if (hFTInput != null) {
+            float takeInput = hFTInput.GetAxisRaw("Jump");
+            float useInput = hFTInput.GetAxisRaw("Fire1");
 
-        if (lastTakeInput == 0 && lastTakeInput != takeInput) 
-        {
+            if (hFTInput.GetButtonDown("Fire1"))
+            {
+                tower.Exit();
+            }
 
+            lastTakeInput = takeInput;
+            lastUseInput = useInput;
         }
-        if (lastUseInput == 0 && lastUseInput != useInput)
-        {
-            tower.Exit();
-        }
-
-        lastTakeInput = takeInput;
-        lastUseInput = useInput;
     }
 }

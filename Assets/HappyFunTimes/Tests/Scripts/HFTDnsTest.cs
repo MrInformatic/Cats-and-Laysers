@@ -2,6 +2,7 @@
 using System.Collections;
 using HappyFunTimes;
 
+[RequireComponent(typeof(HFTInput), typeof(HFTGamepad))]
 public class HFTDnsTest : MonoBehaviour
 {
 

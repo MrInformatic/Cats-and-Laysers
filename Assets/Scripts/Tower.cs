@@ -11,8 +11,9 @@ public class Tower : MonoBehaviour
     Transform player;
     Vector3 playerPosition;
     int sortingLayer;
+    
 
-    public void Enter(Transform player)
+    public void Enter(Transform player, HFTInput hFTInput)
     {
         // Player stuff
         this.player = player;
@@ -27,6 +28,7 @@ public class Tower : MonoBehaviour
 
         // Lazer
         lazer.gameObject.SetActive(true);
+        lazer.GetComponent<Lazer>().hFTInput = hFTInput;
     }
 
     public void Exit()
