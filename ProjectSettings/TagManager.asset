@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Cat
+  - Item
+  - Tower
+  - Lazer
   layers:
   - Default
   - TransparentFX
@@ -16,7 +19,7 @@ TagManager:
   - 
   - Human
   - Cat
-  - 
+  - Tower
   - 
   - 
   - 
