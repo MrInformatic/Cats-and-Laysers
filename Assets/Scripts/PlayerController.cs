@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
     private int catLayerMask;
 
@@ -21,6 +22,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+
         float input = Input.GetAxisRaw("Jump");
         
         if (lastInput == 0 && lastInput != input)
@@ -51,6 +57,11 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+
         Vector3 movement = new Vector3(
             Input.GetAxis("Horizontal"),
             Input.GetAxis("Vertical")
